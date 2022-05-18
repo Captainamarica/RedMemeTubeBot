@@ -31,7 +31,7 @@ def FSub(func):
                text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
 ♻️Join and Try Again.♻️"""
-               reply_markup = FORCESUB_BUTTONS
+               reply_markup = CAPTION_BTN
                await message.reply_text(
                text=text,
                reply_markup=reply_markup
