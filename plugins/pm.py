@@ -58,7 +58,7 @@ PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 @Client.on_message(filters.private & filters.text)
 async def pm_text(bot, message):
-   if force_subchannel:
+    if force_subchannel:
         try:
             user = await bot.get_chat_member(force_subchannel, message.from_user.id)
             if user.status == "kicked out":
@@ -91,7 +91,7 @@ async def pm_text(bot, message):
 
 @Client.on_message(filters.sticker & filters.private) 
 async def pm_media(bot, message):
-   if force_subchannel:
+    if force_subchannel:
         try:
             user = await bot.get_chat_member(force_subchannel, message.from_user.id)
             if user.status == "kicked out":
