@@ -33,3 +33,37 @@ Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
             disable_web_page_preview=True) 
         return await func(_, message)    
     return force
+
+@Client.on_callback_query()  
+async def tgm(bot, update):  
+    if update.data == "add": 
+        await update.answer(
+             text="♻️Adding Soon.....",
+        )
+    elif update.data == "bak":
+         await update.message.edit_text(
+             text=HELP_STRING,
+             reply_markup=CLOSE_BUTTON,
+             disable_web_page_preview=True
+         )
+         await update.answer(
+             text="👻 ʙᴀᴍᴄᴋ 👻",
+         )
+    elif update.data == "bak":
+         await update.message.delete()
+         await bot.delete_message(update.chat.id, update.message.id)
+    elif update.data == "hlp":
+         await update.message.edit_text(
+             text=HELP_STRING,
+             reply_markup=CLOSE_BUTTON,
+             disable_web_page_preview=True
+         )
+         await update.answer(
+             text="👻 ʜᴇᴍʟᴘ 👻",
+         )
+    elif update.data == "cloc":
+         await update.message.delete()
+    elif update.data == "ref": 
+        await update.answer(
+             text="♻️Reloading.....♻️",
+        )   
