@@ -13,26 +13,19 @@ FORCESUB_BUTTONS = InlineKeyboardMarkup([[
                  ]]
                   )
 
-async def forcesub(bot, message):  
-   if force_subchannel:
+def ForceSub(func):
+    @wraps(func)
+    async def force(_, message):
         try:
-            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
-            if user.status == "kicked out":
-                await message.reply_text("Yourt Banned")
-                return 
+            await message._client.get_chat_member(-1001325914694, message.from_user.id)
         except UserNotParticipant:
-            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
-            await bot.send_sticker(message.chat.id, file_id)
-            text = f"""
-            **❌ Dear {message.from_user.mention}, Access Denied ❌**
-
+            return await message.reply_text(
+            text=f"""
+**❌ Dear {message.from_user.mention}, Access Denied ❌**
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
 ♻️Join and Try Again.♻️
             """,
-            reply_markup = FORCESUB_BUTTONS
-            await message.reply_text(
-            text=text,
-            reply_markup=reply_markup
-            )
-      return await func(bot, message)
-return forcesub
+            reply_markup=CAPTION_BTN,
+            disable_web_page_preview=True) 
+        return await func(_, message)    
+    return force
