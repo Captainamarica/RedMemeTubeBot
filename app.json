@@ -1,0 +1,56 @@
+{
+    "name": "Mhub Bot",
+    "description": "Memehub Official Bot",
+    "keywords": [
+        "pyrohram",
+        "pyro",
+        "telegram",
+        "telebot"
+    ],
+    "repository": "https://github.com/Gishankrishka2/Memehub_bot",
+    "website": "https://github.com/Gishankrishka2/Memehub_bot",
+    "success_url": "https://github.com/Gishankrishka2/Memehub_bot",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "",
+            "required": "True"
+        },
+      {
+        "API_ID": {
+            "description": "",
+            "required": "True"
+        },
+      {
+        "API_HASH": {
+            "description": "",
+            "required": "True"
+        },
+      {
+        "OWNER_ID": {
+            "description": "",
+            "required": "True"
+        },
+      {
+        "REDIS_URI": {
+            "description": "",
+            "required": "True"
+        },
+      {
+        "REDIS_PASS": {
+            "description": "",
+            "required": "True"
+        }
+    },
+    "stack": "heroku-20",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
