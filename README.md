@@ -9,7 +9,7 @@
 
 - Create a Account on [RedisLabs.com](https://RedisLabs.com)
 - Create one REDIS Subscription
-- You will get REDIS Endpoint, which will be REDIS_PASS and password which will be REDIS_PASS
+- You will get REDIS Endpoint, which will be REDIS_URI and password which will be REDIS_PASS
   
   </details>
 
