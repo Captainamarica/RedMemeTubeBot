@@ -21,7 +21,9 @@ def FSub(func):
         try:
             await message._client.get_chat_member(-1001210985373, message.from_user.id)
         except UserNotParticipant:
-            return await message.reply_text(
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            return await bot.send_sticker(message.chat.id, file_id)
+            await message.reply_text(
             text=f"""
 **❌ Dear {message.from_user.mention}, Access Denied ❌**
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
