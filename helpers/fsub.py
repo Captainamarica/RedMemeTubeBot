@@ -2,7 +2,7 @@ from functools import wraps
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 
-CAPTION_BTN = InlineKeyboardMarkup([[
+FORCESUB_BUTTONS = InlineKeyboardMarkup([[
                  InlineKeyboardButton('Join Here - MemeHub Telegram 🇱🇰', url=f"https://t.me/{force_subchannel}")
                  ],
                  [
@@ -13,22 +13,26 @@ CAPTION_BTN = InlineKeyboardMarkup([[
                  ]]
                   )
 
-def ForceSub(func):
-    @wraps(func)
-    async def forcesub(_, message):
+async def forcesub(bot, message):  
+   if force_subchannel:
         try:
-            await message._client.get_chat_member(-1001325914694, message.from_user.id)
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
         except UserNotParticipant:
             file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
-            return await client.send_sticker(message.chat.id, file_id) 
-            await message.reply_text(
-            text=f"""
-**❌ Dear {message.from_user.mention}, Access Denied ❌**
+            await bot.send_sticker(message.chat.id, file_id)
+            text = f"""
+            **❌ Dear {message.from_user.mention}, Access Denied ❌**
 
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
 ♻️Join and Try Again.♻️
             """,
-            reply_markup=CAPTION_BTN,
-            disable_web_page_preview=True) 
-        return await func(_, message)    
-    return sz_message
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            )
+      return await func(bot, message)
+return forcesub
