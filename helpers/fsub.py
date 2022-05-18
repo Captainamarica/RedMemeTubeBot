@@ -22,8 +22,8 @@ def ForceSub(func):
             file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
             return await client.send_sticker(message.chat.id, file_id) 
             await message.reply_text(
-            text="""
-**❌ Access Denied ❌**
+            text=f"""
+**❌ Dear {message.from_user.mention}, Access Denied ❌**
 
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
 ♻️Join and Try Again.♻️
