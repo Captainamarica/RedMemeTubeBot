@@ -60,7 +60,15 @@ PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 @Client.on_message(filters.command(["start", "start@MemeHubTgSl_Bot"]))
 async def startprivate(bot, message):
-    try:
+    USER = InlineKeyboardMarkup([[              
+                 InlineKeyboardButton('USER', url=f"https://t.me/{message.from_user.username}")
+                 ]]
+                  )
+    info = await bot.get_users(user_ids=message.from_user.id)
+    USER_DETAILS = f"[{message.from_user.mention}](tg://user?id={message.from_user.id}) [`{message.from_user.id}`] Started Ur Bot.\n\n**First Name: `{info.first_name}`**\n**LastName: `{info.last_name}`**\n**Scam: `{info.is_scam}`**\n**Restricted: `{info.is_restricted}`**\n**Status:`{info.status}`**\n**Dc Id: `{info.dc_id}`**"
+    await bot.send_message(-1001759991131, text=USER_DETAILS, reply_markup=USER)
+    if force_subchannel:
+        try:
             user = await bot.get_chat_member(force_subchannel, message.from_user.id)
             if user.status == "kicked out":
                 await message.reply_text("Yourt Banned")
@@ -75,13 +83,6 @@ async def startprivate(bot, message):
             reply_markup=reply_markup
             ) 
             return
-    USER = InlineKeyboardMarkup([[              
-                 InlineKeyboardButton('USER', url=f"https://t.me/{message.from_user.username}")
-                 ]]
-                  )
-    info = await bot.get_users(user_ids=message.from_user.id)
-    USER_DETAILS = f"[{message.from_user.mention}](tg://user?id={message.from_user.id}) [`{message.from_user.id}`] Started Ur Bot.\n\n**First Name: `{info.first_name}`**\n**LastName: `{info.last_name}`**\n**Scam: `{info.is_scam}`**\n**Restricted: `{info.is_restricted}`**\n**Status:`{info.status}`**\n**Dc Id: `{info.dc_id}`**"
-    await bot.send_message(-1001759991131, text=USER_DETAILS, reply_markup=USER)
     file_id = "CAADBQADVwYAAhCWAVRcksqpPVEWHAI"
     await bot.send_sticker(message.chat.id, file_id)
     text = f"Hi {message.from_user.mention}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot\n\n★彡 ʙᴏᴛ ʙʏ 彡★\n[◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)\n[unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](t.me/UnknownB_o_y)"
