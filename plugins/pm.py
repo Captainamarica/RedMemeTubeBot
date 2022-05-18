@@ -82,6 +82,7 @@ async def pm_media(bot, message):
     await bot.send_sticker(message.chat.id, file_id) 
 
 @Client.on_message(filters.media & filters.private)
+@FSub
 async def pm_media(bot, message):
     if message.from_user.id == 1884885842:
         await replay_media(bot, message)
