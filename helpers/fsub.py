@@ -17,7 +17,7 @@ def ForceSub(func):
     @wraps(func)
     async def force(_, message):
         try:
-            await message._client.get_chat_member(-1001325914694, message.from_user.id)
+            await message._client.get_chat_member(-1001210985373, message.from_user.id)
         except UserNotParticipant:
             return await message.reply_text(
             text=f"""
