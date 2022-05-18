@@ -48,7 +48,9 @@ CLOSE_BUTTON = InlineKeyboardMarkup([[
                  ]]
                  )
 
-FORCESUB_TEXT = "**❌ Access Denied ❌**\n\nMemehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒\n♻️Join and Try Again.♻️"
+FORCESUB_TEXT = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
+Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
+♻️Join and Try Again.♻️"""
                   
 WELCOME_TEXT = "Hello.. <b>{}</b>\n<code>Type your query here..\nI'll respond to your query as earliest</code> 😉\n\nуσυ ωαииα тσ киσω αвσυт мє😌? яєα∂ вєℓσω\n\nαвσυт @Gishankrishka:-\n •му иαмє:- Gishan Krishka \n •му αgє:- υикиσωи🌝\n •¢σмρυтєя ℓαиgυαgє:- ωєв ∂єνєℓσρмєит(ℓєαяиιиg), ρутнσи мσяє ѕσσи😁\n•¢нє¢к [About ༒❣️☢️╣IrØή❂mคŇ╠☢️❣️༒](https://t.me/Gishankrishka_Info_bot) fσя мσяє\n\nPlz Don't Send Stickers 🥲\nReason :- [This](https://t.me/ultchat/19589)"
 USER_DETAILS = "<b>FROM:</b>\nName: {} {}\nId: {}\nUname: @{}\nScam: {}\nRestricted: {}\nStatus: {}\nDc Id: {}"
@@ -57,8 +59,22 @@ PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 
 @Client.on_message(filters.command(["start", "start@MemeHubTgSl_Bot"]))
-@FSub
 async def startprivate(bot, message):
+    try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     USER = InlineKeyboardMarkup([[              
                  InlineKeyboardButton('USER', url=f"https://t.me/{message.from_user.username}")
                  ]]
