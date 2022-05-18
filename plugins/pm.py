@@ -58,7 +58,7 @@ PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 
 @Client.on_message(filters.private & filters.text)
-@Fsub
+@FSub
 async def pm_text(bot, message):
     if message.from_user.id == 1884885842:
         await reply_text(bot, message)
