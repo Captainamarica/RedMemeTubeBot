@@ -15,7 +15,7 @@ FORCESUB_BUTTONS = InlineKeyboardMarkup([[
                  ]]
                   )
 
-def ForceSub(func):
+def FSub(func):
     @wraps(func)
     async def force(_, message):
         try:
