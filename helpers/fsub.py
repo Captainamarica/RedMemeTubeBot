@@ -4,7 +4,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 
 force_subchannel = "Memehubtgsl"
 
-FORCESUB_BUTTONS = InlineKeyboardMarkup([[
+CAPTION_BTN = InlineKeyboardMarkup([[
                  InlineKeyboardButton('Join Here - MemeHub Telegram 🇱🇰', url=f"https://t.me/{force_subchannel}")
                  ],
                  [
