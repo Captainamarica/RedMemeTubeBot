@@ -20,22 +20,22 @@ def FSub(func):
     @wraps(func)
     async def force(_, message):
         if force_subchannel:
-        try:
-            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
-            if user.status == "kicked out":
-                await message.reply_text("Ur Banned")
-                return 
-        except UserNotParticipant:
-            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
-            await bot.send_sticker(message.chat.id, file_id)
-            text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
+           try:
+               user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+               if user.status == "kicked out":
+                   await message.reply_text("Ur Banned")
+                   return 
+           except UserNotParticipant:
+               file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+               await bot.send_sticker(message.chat.id, file_id)
+               text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
 Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
 ♻️Join and Try Again.♻️"""
-            reply_markup = FORCESUB_BUTTONS
-            await message.reply_text(
-            text=text,
-            reply_markup=reply_markup
-            ) 
+               reply_markup = FORCESUB_BUTTONS
+               await message.reply_text(
+               text=text,
+               reply_markup=reply_markup
+               ) 
         return await func(_, message)    
     return force
 
