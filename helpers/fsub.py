@@ -23,7 +23,7 @@ def FSub(func):
         try:
             user = await bot.get_chat_member(force_subchannel, message.from_user.id)
             if user.status == "kicked out":
-                await message.reply_text("Yourt Banned")
+                await message.reply_text("Ur Banned")
                 return 
         except UserNotParticipant:
             file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
