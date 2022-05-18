@@ -23,6 +23,10 @@ def ForceSub(func):
             return await client.send_sticker(message.chat.id, file_id) 
             await message.reply_text(
             text="""
+**❌ Access Denied ❌**
+
+Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
+♻️Join and Try Again.♻️
             """,
             reply_markup=CAPTION_BTN,
             disable_web_page_preview=True) 
