@@ -18,7 +18,7 @@ CAPTION_BTN = InlineKeyboardMarkup([[
 
 def FSub(func):
     @wraps(func)
-    async def force(_, message):
+    async def force(bot, message):
         if force_subchannel:
            try:
                user = await bot.get_chat_member(force_subchannel, message.from_user.id)
@@ -36,7 +36,7 @@ Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
                text=text,
                reply_markup=reply_markup
                ) 
-        return await func(_, message)    
+        return await func(bot, message)    
     return force
 
 @Client.on_callback_query()  
