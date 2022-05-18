@@ -58,8 +58,25 @@ PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 
 @Client.on_message(filters.private & filters.text)
-@FSub
 async def pm_text(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
+Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
+♻️Join and Try Again.♻️"""
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     if message.from_user.id == 1884885842:
         await reply_text(bot, message)
         return
@@ -76,14 +93,48 @@ async def pm_text(bot, message):
 
 
 @Client.on_message(filters.sticker & filters.private) 
-@FSub
 async def pm_media(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
+Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
+♻️Join and Try Again.♻️"""
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     file_id = "CAADBQADEwUAAmjn4Vez7jrL1Cu2AAEC"
     await bot.send_sticker(message.chat.id, file_id) 
 
 @Client.on_message(filters.media & filters.private)
-@FSub
 async def pm_media(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
+Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
+♻️Join and Try Again.♻️"""
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     if message.from_user.id == 1884885842:
         await replay_media(bot, message)
         return
