@@ -2,6 +2,8 @@ from functools import wraps
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 
+force_subchannel = "Memehubtgsl"
+
 FORCESUB_BUTTONS = InlineKeyboardMarkup([[
                  InlineKeyboardButton('Join Here - MemeHub Telegram 🇱🇰', url=f"https://t.me/{force_subchannel}")
                  ],
