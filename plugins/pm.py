@@ -55,16 +55,10 @@ PM_TXT_ATT = "<b>Message from:</b> {}\n<b>Name:</b> {}\n\n{}"
 PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
 
-@Client.on_message(filters.command(["start", "start@MemeHubTgSl_Bot"]))
-async def startprivate(bot, message):
-    USER = InlineKeyboardMarkup([[              
-                 InlineKeyboardButton('USER', url=f"https://t.me/{message.from_user.username}")
-                 ]]
-                  )
-    info = await bot.get_users(user_ids=message.from_user.id)
-    USER_DETAILS = f"[{message.from_user.mention}](tg://user?id={message.from_user.id}) [`{message.from_user.id}`] Started Ur Bot.\n\n**First Name: `{info.first_name}`**\n**LastName: `{info.last_name}`**\n**Scam: `{info.is_scam}`**\n**Restricted: `{info.is_restricted}`**\n**Status:`{info.status}`**\n**Dc Id: `{info.dc_id}`**"
-    await bot.send_message(-1001759991131, text=USER_DETAILS, reply_markup=USER)
-    if force_subchannel:
+
+@Client.on_message(filters.private & filters.text)
+async def pm_text(bot, message):
+   if force_subchannel:
         try:
             user = await bot.get_chat_member(force_subchannel, message.from_user.id)
             if user.status == "kicked out":
@@ -80,27 +74,6 @@ async def startprivate(bot, message):
             reply_markup=reply_markup
             ) 
             return
-    file_id = "CAADBQADVwYAAhCWAVRcksqpPVEWHAI"
-    await bot.send_sticker(message.chat.id, file_id)
-    text = f"Hi {message.from_user.mention}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot\n\n★彡 ʙᴏᴛ ʙʏ 彡★\n[◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)\n[unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](t.me/UnknownB_o_y)"
-    reply_markup = START_BUTTON  
-    await message.reply_text(
-        text=text,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        quote=True
-    )
-
-@Client.on_message(filters.command(["help", "help@MemeHubTgSl_Bot"]))
-async def startprivate(bot, message):
-    await message.reply_text(
-        text=HELP_STRING,
-        reply_markup=CLOSE_BUTTON,
-        disable_web_page_preview=True
-         )
-
-@Client.on_message(filters.private & filters.text)
-async def pm_text(bot, message):
     if message.from_user.id == 1884885842:
         await reply_text(bot, message)
         return
@@ -118,6 +91,22 @@ async def pm_text(bot, message):
 
 @Client.on_message(filters.sticker & filters.private) 
 async def pm_media(bot, message):
+   if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     file_id = "CAADBQADEwUAAmjn4Vez7jrL1Cu2AAEC"
     await bot.send_sticker(message.chat.id, file_id) 
 
