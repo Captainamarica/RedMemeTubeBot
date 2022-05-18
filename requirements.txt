@@ -15,4 +15,3 @@ Python_ARQ
 TgCrypto
 python-dotenv
 redis
-functools
