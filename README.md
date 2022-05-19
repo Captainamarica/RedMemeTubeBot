@@ -1,6 +1,6 @@
 # Memehub Bot
 <p align="center">
-<img src="https://telegra.ph/file/b20fd5dfc7cf46508593e.jpg" width="520", height="520"></p>
+<img src="https://telegra.ph/file/d5086ff2537780c9c07ed.jpg" width="520", height="520"></p>
 
 
 # DEPLOY TO HEROKU
@@ -43,7 +43,7 @@ CONTRIBUTIONS AND SUGGESTIONS ARE WELCOME !!
 * ### Thanks to
    - Dan for [Pyrogram](https://github.com/Pyrogram)
 * ### OWNERS
-   - [Gishankrishka2](https://github.com/Gishankrishka2) ``Owner``
+   - [◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』 ⁪⁬⁮⁮⁮𝙍𝙖𝙟𝙖𝙥𝙖𝙠𝙨𝙝𝙖](https://github.com/Gishankrishka2) ``Owner``
 
    - [𝕯𝖆𝖗𝖐 𝕰𝖒𝖕𝖎𝖗𝖊](https://github.com/DARKEMPIRESL) ``Owner``
 
