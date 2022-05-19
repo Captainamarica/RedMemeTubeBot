@@ -5,6 +5,7 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, InputTextMessageContent
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
+from vars import var
 
 
 force_subchannel = "Memehubtgsl"
