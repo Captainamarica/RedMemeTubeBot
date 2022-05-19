@@ -8,7 +8,6 @@ from database.blacklist import check_blacklist
 from database.userchats import add_chat
 from vars import var
 
-callback_query
 
 START_STRING ="""
 Hi {}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot.
