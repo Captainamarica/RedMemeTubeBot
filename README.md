@@ -26,5 +26,6 @@
 -  `REDIS_PASS` - Redis Password.
 -  `OWNER_ID` - Telegram User id Of OWNER.
 <br><br>
+
 # Contributors
-![GitHub Contributors Image](https://contrib.rocks/image?repo=https://github.com/Gishankrishka2/Memehub_bot)
+![GitHub Contributors Image](https://contrib.rocks/image?repo=Gishankrishka2/Memehub_bot)
