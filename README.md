@@ -49,4 +49,4 @@ CONTRIBUTIONS AND SUGGESTIONS ARE WELCOME !!
 
    - [unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](https://github.com/tkalum) ``owner``
   
-   - [Tharuk Renuja](github.com/TharukRenuja) 
+   - [Tharuk Renuja](github.com/TharukRenuja) ``owner``
