@@ -46,3 +46,5 @@ CONTRIBUTIONS AND SUGGESTIONS ARE WELCOME !!
    - [Gishankrishka2](https://github.com/Gishankrishka2) ``Owner``
 
    - [𝕯𝖆𝖗𝖐 𝕰𝖒𝖕𝖎𝖗𝖊](https://github.com/DARKEMPIRESL) ``Owner``
+
+   - [unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](https://github.com/tkalum) ``owner``
