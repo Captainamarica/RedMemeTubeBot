@@ -24,10 +24,10 @@ async def bcast(client, message):
             FAIL += 1
             STR += f"{chat} - {str(e)}"
     await message.reply_text(
-        f"sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛᴇᴅ ᴛᴏ {SUCE} ᴄʜᴀᴛs\nғᴀɪʟᴇᴅ - {FAIL} ᴄʜᴀᴛs !"
+        f"Successfully Broadcasted to {SUCE} Chats\nFailed - {FAIL} Chats !"
     )
     if FAIL > 0:
-      await m.edit_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴇʀʀᴏʀ ʀᴇᴘᴏʀᴛ !")
+      await m.edit_text("Generating Error Report !")
       open("ErrorReport.txt", "w").write(STR)
       await message.reply_document("ErrorReport.txt", caption="Errors on Broadcast")
       os.remove("ErrorReport.txt")
@@ -37,4 +37,4 @@ async def bcast(client, message):
 @Client.on_message(filters.command("stats") & filters.user(int(var.OWNER_ID)))
 async def gistat(_, message):
     al = get_all_chats()
-    await message.reply_text(f"ᴛᴏᴛᴀʟ ᴜsᴇʀs ɪɴ ᴅᴀᴛᴀʙᴀsᴇ - {len(al)}", quote=True)
+    await message.reply_text(f"Total Chats in Database - {len(al)}", quote=True)

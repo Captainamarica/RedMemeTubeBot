@@ -1,9 +1,12 @@
 {
-    "name": "Mhub Bot",
-    "description": "Memehub Official Bot",
-    "repository": "https://github.com/Gishankrishka2/Memehub_bot",
-    "logo": "https://telegra.ph/file/7966021e7aa2a08112249.jpg",
-    "keywords": ["telegram", "memehubtgsl", "memehubbot", "telegram bot"],
+    "name": "Memehub Bot",
+    "description": "Multi Function Pm Bot",
+    "repository": "https://github.com/Gishankrishka2/MultiPm",
+    "logo": "https://telegra.ph/file/b20fd5dfc7cf46508593e.jpg",
+    "keywords": ["pyrogram",
+                 "pyro",
+                 "telegram",
+                 "telebot"],
     "env": {
         "BOT_TOKEN": {
             "description": "Your Bot token from @Botfather",
@@ -30,5 +33,16 @@
             "value": ""
         }
     },
-    "buildpacks": [{ "url": "heroku/python" }]
+    "stack": "heroku-20",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
 }

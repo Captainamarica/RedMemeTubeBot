@@ -1,19 +1,18 @@
 import os
 
-from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
-from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, InputTextMessageContent
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
+
+from database.blacklist import check_blacklist
+from database.userchats import add_chat
 from vars import var
 
-
-force_subchannel = "Memehubtgsl"
+callback_query
 
 START_STRING ="""
 Hi {}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot.
  Bot By [◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)
- 
 """
 BACK_BUTTONS = InlineKeyboardMarkup([[
                  InlineKeyboardButton(text="👻 ʙᴀᴍᴄᴋ 👻",callback_data="bak")            
@@ -31,17 +30,6 @@ START_BUTTON = InlineKeyboardMarkup([[
                  ]]
                   )
                   
-FORCESUB_BUTTONS = InlineKeyboardMarkup([[
-                 InlineKeyboardButton('Join Here - MemeHub Telegram 🇱🇰', url=f"https://t.me/{force_subchannel}")
-                 ],
-                 [
-                 InlineKeyboardButton('🐞 ʀᴘᴏʀᴛ ʙᴜɢs 🐞', url=f"https://t.me/Imgishan")
-                 ],
-                 [
-                 InlineKeyboardButton(text="♻️ Reload ♻️",callback_data="ref")
-                 ]]
-                  )
-    
 HELP_STRING = "Meme Tiye nam dapam Mekata😒😂. Adminlata Msg Daanna One Nam ekat Mekata dapam 😒😂"
 
 CLOSE_BUTTON = InlineKeyboardMarkup([[
@@ -65,27 +53,9 @@ async def startprivate(bot, message):
     info = await bot.get_users(user_ids=message.from_user.id)
     USER_DETAILS = f"[{message.from_user.mention}](tg://user?id={message.from_user.id}) [`{message.from_user.id}`] Started Ur Bot.\n\n**First Name: `{info.first_name}`**\n**LastName: `{info.last_name}`**\n**Scam: `{info.is_scam}`**\n**Restricted: `{info.is_restricted}`**\n**Status:`{info.status}`**\n**Dc Id: `{info.dc_id}`**"
     await bot.send_message(-1001759991131, text=USER_DETAILS, reply_markup=USER)
-    if force_subchannel:
-        try:
-            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
-            if user.status == "kicked out":
-                await message.reply_text("Yourt Banned")
-                return 
-        except UserNotParticipant:
-            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
-            await bot.send_sticker(message.chat.id, file_id)
-            text = f"""**❌ Dear {message.from_user.mention}, Access Denied ❌**
-Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
-♻️Join and Try Again.♻️"""
-            reply_markup = FORCESUB_BUTTONS
-            await message.reply_text(
-            text=text,
-            reply_markup=reply_markup
-            ) 
-            return
     file_id = "CAADBQADVwYAAhCWAVRcksqpPVEWHAI"
     await bot.send_sticker(message.chat.id, file_id)
-    text = f"Hi {message.from_user.mention}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot\n\n★彡 ʙᴏᴛ ʙʏ 彡★\n[◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)\n[unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](t.me/UnknownB_o_y)\n[𝕯𝖆𝖗𝖐 𝕰𝖒𝖕𝖎𝖗𝖊 🇱🇰🇸 🇱 🇧 🇴 🇹 🇸 ™](https://t.me/SL_BOTS_TM)"
+    text = f"Hi {message.from_user.mention}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot\n\n★彡 ʙᴏᴛ ʙʏ 彡★\n[◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)\n[unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](t.me/UnknownB_o_y)"
     reply_markup = START_BUTTON  
     await message.reply_text(
         text=text,
@@ -93,37 +63,112 @@ Memehub eke nathuva Mokatada yako Botva Start Kare kkk😒😒
         disable_web_page_preview=True,
         quote=True
     )
+
+@Client.on_message(filters.command(["help", "help@MemeHubTgSl_Bot"]))
+async def startprivate(bot, message):
+    await message.reply_text(
+        text=HELP_STRING,
+        reply_markup=CLOSE_BUTTON,
+        disable_web_page_preview=True
+         )
+
+@Client.on_message(filters.private & filters.text)
+async def pm_text(bot, message):
+    if message.from_user.id == var.OWNER_ID:
+        await reply_text(bot, message)
+        return
+    info = await bot.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    await bot.send_message(
+        chat_id=var.OWNER_ID,
+        text=f"**Msg from:</b> {reference_id} **\n**Name:</b> {info.first_name}\n\n{message.text}**"
+    )
+    await bot.send_message(
+        chat_id=-1001759991131,
+        text=f"**Msg from:</b> {reference_id} **\n**Name:</b> {message.from_user.mention}\n\n{message.text}**"
+    )
+
+
+@Client.on_message(filters.sticker & filters.private) 
+async def pm_media(bot, message):
+    file_id = "CAADBQADEwUAAmjn4Vez7jrL1Cu2AAEC"
+    await bot.send_sticker(message.chat.id, file_id) 
+
+@Client.on_message(filters.media & filters.private)
+async def pm_media(bot, message):
+    if message.from_user.id == var.OWNER_ID:
+        await replay_media(bot, message)
+        return
+    info = await bot.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    await message.forward(var.OWNER_ID)
     
-@Client.on_callback_query()  
-async def tgm(bot, update):  
-    if update.data == "add": 
-        await update.answer(
-             text="♻️Adding Soon.....",
-        )
-    elif update.data == "bak":
-         await update.message.edit_text(
-             text=HELP_STRING,
-             reply_markup=CLOSE_BUTTON,
-             disable_web_page_preview=True
-         )
-         await update.answer(
-             text="👻 ʙᴀᴍᴄᴋ 👻",
-         )
-    elif update.data == "bak":
-         await update.message.delete()
-         await bot.delete_message(update.chat.id, update.message.id)
-    elif update.data == "hlp":
-         await update.message.edit_text(
-             text=HELP_STRING,
-             reply_markup=CLOSE_BUTTON,
-             disable_web_page_preview=True
-         )
-         await update.answer(
-             text="👻 ʜᴇᴍʟᴘ 👻",
-         )
-    elif update.data == "cloc":
-         await update.message.delete()
-    elif update.data == "ref": 
-        await update.answer(
-             text="♻️Reloading.....♻️",
-        )   
+    await bot.send_message(var.OWNER_ID ,f"Photo from:</b> {reference_id} **\n**Name:</b> {info.first_name}")
+    await message.forward(-1001210985373)
+    await message.forward(-1001759991131)
+    await bot.send_message(
+        chat_id=-1001759991131,
+        text=f"**Msg from:</b> {reference_id} **\n**Name:</b> [{message.from_user.first_name}](tg://user?id={message.from_user.id})**\n\n@admin"
+    )
+    reply_markup = BACK_BUTTONS
+    text = "Ur Photo Sent To [MemeHub Telegram 🇱🇰](https://t.me/memehubTGSL)"
+    await message.reply_text(
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        quote=True
+    )
+    
+
+
+
+
+@Client.on_message(filters.text)
+async def reply_text(bot, message):
+    reference_id = True
+    if message.reply_to_message is not None:
+        file = message.reply_to_message
+        try:
+            reference_id = file.text.split()[2]
+        except Exception:
+            pass
+        try:
+            reference_id = file.caption.split()[2]
+        except Exception:
+            pass
+        await bot.send_message(
+            text=message.text,
+            chat_id=int(reference_id)
+        )    
+ 
+
+
+
+
+         
+@Client.on_message(filters.user(var.OWNER_ID) & filters.sticker)
+async def replay_media(bot, message):
+    reference_id = True
+    if message.reply_to_message is not None:
+        file = message.reply_to_message
+        try:
+            reference_id = file.text.split()[2]
+        except Exception:
+            pass
+        try:
+            reference_id = file.caption.split()[2]
+        except Exception:
+            pass
+        await bot.copy_message(
+            chat_id=int(reference_id),
+            from_chat_id=message.chat.id,
+            message_id=message.message_id
+        )          
+         
+           
+
+print(f"""
+Im Alive
+""")
+
+
