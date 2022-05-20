@@ -9,6 +9,14 @@ from database.userchats import add_chat
 from vars import var
 
 
+FORCESUB_TEXT = "Dear {}, **❌ Access Denied ❌**\n\nChannel eke nathuva Mokatada yako Botva Start Kare kkk😒😒\n♻️Join and Try Again.♻️"
+
+force_subchannel = var.FSUB
+owner = var.OWNEWR_ID
+START_STICKER = var.START_STICKER_ID
+ADMIN_G = var.ADMIN_GROUP_ID
+M_CHANNEL = var.MAIN_CHAN_ID
+
 START_STRING ="""
 Hi {}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot.
  Bot By [◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)
@@ -19,7 +27,7 @@ BACK_BUTTONS = InlineKeyboardMarkup([[
                   ) 
 
 START_BUTTON = InlineKeyboardMarkup([[              
-                 InlineKeyboardButton('🍁 Owner 🍁', url="https://t.me/N_Abeysinghe_2001")
+                 InlineKeyboardButton('🐞 ʀᴘᴏʀᴛ ʙᴜɢs 🐞', url=f"https://t.me/Imgishan")
                  ],
                  [
                  InlineKeyboardButton(text="🌴 ʜᴇʟᴘ 🌴",callback_data="hlp")
@@ -42,17 +50,43 @@ USER_DETAILS = "<b>FROM:</b>\nName: {} {}\nId: {}\nUname: @{}\nScam: {}\nRestric
 PM_TXT_ATT = "<b>Message from:</b> {}\n<b>Name:</b> {}\n\n{}"
 PM_MED_ATT = "<b>Photo from:</b> {} \n<b>Name:</b> {}"
 
+FORCESUB_BUTTONS = InlineKeyboardMarkup([[
+                 InlineKeyboardButton('Join Here - MemeHub Telegram 🇱🇰', url=f"https://t.me/{force_subchannel}")
+                 ],
+                 [
+                 InlineKeyboardButton('🐞 ʀᴘᴏʀᴛ ʙᴜɢs 🐞', url=f"https://t.me/Imgishan")
+                 ],
+                 [
+                 InlineKeyboardButton(text="♻️ Reload ♻️",callback_data="ref")
+                 ]]
+                  )
 
 @Client.on_message(filters.command(["start", "start@MemeHubTgSl_Bot"]))
 async def startprivate(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     USER = InlineKeyboardMarkup([[              
-                 InlineKeyboardButton('USER', url=f"https://t.me/{message.from_user.username}")
+                 InlineKeyboardButton('USER', user_id=f"{message.from_user.id}")
                  ]]
                   )
     info = await bot.get_users(user_ids=message.from_user.id)
     USER_DETAILS = f"[{message.from_user.mention}](tg://user?id={message.from_user.id}) [`{message.from_user.id}`] Started Ur Bot.\n\n**First Name: `{info.first_name}`**\n**LastName: `{info.last_name}`**\n**Scam: `{info.is_scam}`**\n**Restricted: `{info.is_restricted}`**\n**Status:`{info.status}`**\n**Dc Id: `{info.dc_id}`**"
-    await bot.send_message(-1001759991131, text=USER_DETAILS, reply_markup=USER)
-    file_id = "CAADBQADVwYAAhCWAVRcksqpPVEWHAI"
+    await bot.send_message(ADMIN_G, text=USER_DETAILS, reply_markup=USER)
+    file_id = f"{START_STICKER}"
     await bot.send_sticker(message.chat.id, file_id)
     text = f"Hi {message.from_user.mention}, Welcome to  MemeHub Telegram 🇱🇰 Official Bot\n\n★彡 ʙᴏᴛ ʙʏ 彡★\n[◤ᴵᴬᴹǤΐรhaή ᴷʳⁱˢʰᵏᵃ◢ 『🇱🇰』](https://t.me/Imgishan)\n[unknown boy┊𝙰𝙻𝙿𝙷𝙰 么 ™](t.me/UnknownB_o_y)"
     reply_markup = START_BUTTON  
@@ -65,6 +99,22 @@ async def startprivate(bot, message):
 
 @Client.on_message(filters.command(["help", "help@MemeHubTgSl_Bot"]))
 async def startprivate(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT.format(message.from_user.mention)
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     await message.reply_text(
         text=HELP_STRING,
         reply_markup=CLOSE_BUTTON,
@@ -73,6 +123,22 @@ async def startprivate(bot, message):
 
 @Client.on_message(filters.private & filters.text)
 async def pm_text(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     if message.from_user.id == var.OWNER_ID:
         await reply_text(bot, message)
         return
@@ -83,18 +149,50 @@ async def pm_text(bot, message):
         text=f"**Msg from:</b> {reference_id} **\n**Name:</b> {info.first_name}\n\n{message.text}**"
     )
     await bot.send_message(
-        chat_id=-1001759991131,
+        chat_id=ADMIN_G,
         text=f"**Msg from:</b> {reference_id} **\n**Name:</b> {message.from_user.mention}\n\n{message.text}**"
     )
 
 
 @Client.on_message(filters.sticker & filters.private) 
 async def pm_media(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     file_id = "CAADBQADEwUAAmjn4Vez7jrL1Cu2AAEC"
     await bot.send_sticker(message.chat.id, file_id) 
 
 @Client.on_message(filters.media & filters.private)
 async def pm_media(bot, message):
+    if force_subchannel:
+        try:
+            user = await bot.get_chat_member(force_subchannel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Yourt Banned")
+                return 
+        except UserNotParticipant:
+            file_id = "CAADBQADOAcAAn_zKVSDCLfrLpxnhAI"
+            await bot.send_sticker(message.chat.id, file_id)
+            text = FORCESUB_TEXT
+            reply_markup = FORCESUB_BUTTONS
+            await message.reply_text(
+            text=text,
+            reply_markup=reply_markup
+            ) 
+            return
     if message.from_user.id == var.OWNER_ID:
         await replay_media(bot, message)
         return
@@ -103,14 +201,14 @@ async def pm_media(bot, message):
     await message.forward(var.OWNER_ID)
     
     await bot.send_message(var.OWNER_ID ,f"Photo from:</b> {reference_id} **\n**Name:</b> {info.first_name}")
-    await message.forward(-1001210985373)
-    await message.forward(-1001759991131)
+    await message.forward()
+    await message.forward(M_CHANNEL)
     await bot.send_message(
-        chat_id=-1001759991131,
+        chat_id=ADMIN_G,
         text=f"**Msg from:</b> {reference_id} **\n**Name:</b> [{message.from_user.first_name}](tg://user?id={message.from_user.id})**\n\n@admin"
     )
     reply_markup = BACK_BUTTONS
-    text = "Ur Photo Sent To [MemeHub Telegram 🇱🇰](https://t.me/memehubTGSL)"
+    text = f"Ur Photo Sent To [MAIN CHANNEL](https://t.me/{force_subchannel})"
     await message.reply_text(
         text=text,
         reply_markup=reply_markup,
