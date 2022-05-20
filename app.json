@@ -28,6 +28,22 @@
             "description": "Redis Password, Get it from redislabs.com",
             "value": ""
         },
+       "FSUB": {
+            "description": "Ur Channel Username Wthout @",
+            "value": ""
+        },
+        "START_STICKER_ID": {
+            "description": "Start Sticker File Id",
+            "value": ""
+        },
+        "ADMIN_GROUP_ID": {
+            "description": "Channe Admin group Id Or Log Channel Id",
+            "value": ""
+        },
+        "MAIN_CHAN_ID": {
+            "description": "Main Channel Id",
+            "value": ""
+        },
         "API_HASH": {
             "description": "Your API_HASH from https://my.telegram.org/apps",
             "value": ""
