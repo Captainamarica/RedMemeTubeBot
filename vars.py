@@ -11,3 +11,7 @@ class var:
     OWNER_ID = os.getenv("OWNER_ID", None)
     REDIS_URI = os.getenv("REDIS_URI", None)
     REDIS_PASS = os.getenv("REDIS_PASS", None)
+    FSUB = os.getenv("FSUB", None)
+    START_STICKER_ID = os.getenv("START_STICKER_ID", None)
+    ADMIN_GROUP_ID = os.getenv("ADMIN_GROUP_ID", None)
+    MAIN_CHAN_ID = os.getenv("MAIN_CHAN_ID", None)
