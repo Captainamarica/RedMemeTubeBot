@@ -12,7 +12,7 @@ from vars import var
 FORCESUB_TEXT = "Dear {}, **❌ Access Denied ❌**\n\nChannel eke nathuva Mokatada yako Botva Start Kare kkk😒😒\n♻️Join and Try Again.♻️"
 
 force_subchannel = var.FSUB
-owner = var.OWNEWR_ID
+owner = var.OWNER_ID
 START_STICKER = var.START_STICKER_ID
 ADMIN_G = var.ADMIN_GROUP_ID
 M_CHANNEL = var.MAIN_CHAN_ID
