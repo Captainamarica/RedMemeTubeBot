@@ -4,7 +4,7 @@
 
 
 # DEPLOY TO HEROKU
-* [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy/template?=https://github.com/Captainamarica/RedMemeTubeBot)
+* [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/Captainamarica/RedMemeTubeBot)
 <br><br>
 
 <details>
